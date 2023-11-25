@@ -98,20 +98,30 @@ def tocar_musica_cache(escolha_musica):
 def lidar_entrada_usuario():
     global pausado, terminado
 
-    while not terminado:
-        comando = input("Digite 1 para pausar ou 2 para retomar a reprodução: ")
+    while True:
+        if terminado:
+            break
+
+        comando = input("Digite 1 para pausar, 2 para retomar a reprodução ou 3 para música e retornar ao menu: ")
+
         if comando == '1':
             pausado = True
             print("Reprodução pausada.")
         elif comando == '2':
             pausado = False
             print("Reprodução retomada.")
-            
+        elif comando == '3':
+            #pausado = False
+            #terminado = False
+            print("Retornando ao menu...")
+            break
         else:
             print("Comando inválido.")
-    print("Reprodução concluída.")
+
+    #print("Reprodução concluída.")
     terminado = False
-    pausado = False
+    pausado = True
+
 
 # Função para encerrar a conexão
 def encerrar_conexao(socket_cliente):
@@ -122,7 +132,7 @@ def encerrar_conexao(socket_cliente):
 
 def iniciar_cliente():
     socket_cliente = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socket_cliente.connect(("192.168.0.98", 12345))
+    socket_cliente.connect(("192.168.18.172", 12345))
     endereco_socket = socket_cliente.getsockname()
     print(endereco_socket)
 
@@ -189,4 +199,3 @@ def iniciar_cliente():
             break
 
 iniciar_cliente()
-
