@@ -62,7 +62,7 @@ def lidar_cliente(socket_cliente, endereco_cliente):
 # Função para iniciar o servidor
 def iniciar_servidor():
     socket_servidor = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    socket_servidor.bind(('192.168.0.98', 12345))
+    socket_servidor.bind(('192.168.18.172', 12345))
     socket_servidor.listen(5)
     print("Servidor iniciado. Aguardando conexões...")
     while True:
@@ -72,3 +72,4 @@ def iniciar_servidor():
         Thread(target=lidar_cliente, args=(sockets[endereco_cliente[0]], endereco_cliente)).start()
 
 iniciar_servidor()
+
